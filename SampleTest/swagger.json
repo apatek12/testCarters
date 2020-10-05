@@ -1,0 +1,72 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "SampleTest",
+    "version" : "1.0.0",
+    "description" : "SampleTest"
+  },
+  "paths" : {
+    "/{OrderNo1}/{OrderNo2}/{Reason}" : {
+      "get" : {
+        "operationId" : "getReason",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve Reason",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "OrderNo1",
+          "in" : "path",
+          "type" : "string"
+        }, {
+          "required" : true,
+          "name" : "OrderNo2",
+          "in" : "path",
+          "type" : "string"
+        }, {
+          "required" : true,
+          "name" : "Reason",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/{OrderNo1}/{OrderNo2}" : {
+      "get" : {
+        "operationId" : "getOrderNo2",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve OrderNo2",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "OrderNo1",
+          "in" : "path",
+          "type" : "string"
+        }, {
+          "required" : true,
+          "name" : "OrderNo2",
+          "in" : "path",
+          "type" : "string"
+        }, {
+          "name" : "order3",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/sampletest/v1"
+}
