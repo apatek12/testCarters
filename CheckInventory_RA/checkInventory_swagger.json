@@ -1,0 +1,179 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "checkInventory_RA",
+    "version": "1.0.0",
+    "description": "checkInventory_RA"
+  },
+  "paths": {
+    "/checkInventory": {
+      "post": {
+        "operationId": "postcheckInventory",
+        "responses": {
+          "200": {
+            "description": "The operation was successful."
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "Check inventory availibility",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/checkInventory"
+            },
+            "description": "The request body for the operation",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "basePath": "/carters/inventory/v1",
+  "definitions": {
+    "checkInventory": {
+      "properties": {
+        "callerInfo": {
+          "type": "object",
+          "properties": {
+            "channel": {
+              "description": "This will be the sending channel",
+              "type": "string",
+              "maxLength": 10,
+              "pattern": "[a-zA-Z0-9]{0,49}",
+              "example": "POS,ECOM,TAB,MOB"
+            },
+            "clerkId": {
+              "description": "Clerk Id",
+              "type": "string",
+              "maxLength": 15,
+              "pattern": "[a-zA-Z0-9]{0,49}",
+              "example": "123456"
+            },
+            "storeNumber": {
+              "description": "Sending store number",
+              "type": "string",
+              "maxLength": 4,
+              "pattern": "[a-zA-Z0-9]{0,49}",
+              "example": "01/12/2020 23:39:45:000"
+            }
+          }
+        },
+        "indicators": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "description": "This will be the UUID (Unique ID for every transaction)",
+              "type": "string",
+              "maxLength": 36,
+              "pattern": "[a-zA-Z0-9]{0,49}",
+              "example": 195333222222
+            },
+            "functionId": {
+              "description": "Function id",
+              "type": "string",
+              "maxLength": 3,
+              "pattern": "[a-zA-Z0-9]{0,49}",
+              "example": "001"
+            },
+            "timeStamp": {
+              "description": "timestamp",
+              "type": "string",
+              "maxLength": 18,
+              "pattern": "[a-zA-Z0-9]{0,49}",
+              "example": "yyyyMMddHHmmSSSSSS"
+            }
+          }
+        },
+        "Lines": {
+          "type": "object",
+          "properties": {
+            "Line": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ItemID": {
+                    "type": "string",
+                    "description": "Item id number",
+                    "maxLength": 6,
+                    "pattern": "[a-zA-Z0-9]{0,49}",
+                    "example": "210216_960_NS"
+                  },
+                  "LineID": {
+                    "type": "string",
+                    "description": "Line id number",
+                    "maxLength": 6,
+                    "pattern": "[0-9]{0,49}",
+                    "example": "100009"
+                  },
+                  "ProductClass": {
+                    "type": "string",
+                    "description": "Class of product",
+                    "maxLength": 6,
+                    "pattern": "[a-zA-Z0-9]{0,49}",
+                    "example": "100009"
+                  },
+                  "UnitOfMeasure": {
+                    "type": "string",
+                    "description": "measurement unit",
+                    "maxLength": 6,
+                    "pattern": "[0-9]{0,49}",
+                    "example": "100009"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CallingOrganizationCode": {
+          "description": "Org code",
+          "type": "string",
+          "maxLength": 10,
+          "pattern": "[a-zA-Z0-9]{0,49}",
+          "example": "CARTERS.COM"
+        },
+        "OnlyConsiderAvailableCache": {
+          "description": "Availablecache Y/N",
+          "type": "string",
+          "maxLength": 10,
+          "pattern": "[a-zA-Z0-9]{0,49}",
+          "example": "STANDARD"
+        }
+      },
+      "additionalProperties": true
+    },
+    "SuccessResponse": {
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "200"
+        },
+        "desc": {
+          "type": "string",
+          "example": "success"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ErrorRespionse": {
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "400"
+        },
+        "description": {
+          "type": "string",
+          "example": "Error"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
